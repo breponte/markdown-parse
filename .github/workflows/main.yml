@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: MarkdownParse JUnit Tests
 
 # Controls when the workflow will run
 on:
@@ -25,12 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Compile and run our JUnit tests, also test out echo
         run: |
-          javac -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. *.java
-          java -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. MarkdownParseTest
+          echo The directory is: $GITHUB_WORKSPACE
+          javac -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar MarkdownParseTest.java MarkdownParse.java
+          java -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore MarkdownParseTest

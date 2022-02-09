@@ -1,1 +1,0 @@
-![image](some-page.html)
